@@ -26,7 +26,7 @@ class circle {
       point.setAttribute('r', 10);
       point.setAttribute('fill', '#000');
       point.setAttribute('stroke', '#000');
-      point.setAttribute('stroke-width', '2');
+      point.setAttribute('stroke-width', '1');
       point.setAttribute('id', `point_${angle}`); // on met un id a chaque point, afin de pouvoir le recuperer pour la suppression
   
       svg.appendChild(point); // ajout du point sur le cercle
