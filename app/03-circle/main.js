@@ -18,7 +18,7 @@ class circle {
   // ajout point sur le cercle
   setPoint(angle){
     const a = angle * 2 * Math.PI / 360; // convertion en radius
-    const svgns = "http://www.w3.org/2000/svg";
+    const svgns = "http://www.w3.org/2000/svg"; //NS name space afin de pouvoir utiliser SVG dans le HTML
     const svg = document.querySelector('svg');
     const point = document.createElementNS(svgns, 'circle');
     point.setAttribute('cx', this.cx + this.radius * Math.cos(a));
@@ -27,12 +27,21 @@ class circle {
     point.setAttribute('fill', '#000');
     point.setAttribute('stroke', '#000');
     point.setAttribute('stroke-width', '2');
+    point.setAttribute('id', `point_${angle}`);
        
     svg.appendChild(point); // ajout du point sur le cercle
 
   }
 
-  // création d'une ligne
+  removePoint(angle){
+      console.log('removePonit');
+      const toBeRemoved = document.querySelector(`#point_${angle}`);
+      if (toBeRemoved) {
+        toBeRemoved.outerHTML = '';
+      }
+  }
+
+  // création d'une ligne entre 2 points sur le cecle
   setLine(angle1, angle2) {
     const a1 = angle1 * 2 * Math.PI / 360; // convertion en radius
     const a2 = angle2 * 2 * Math.PI / 360;
@@ -60,6 +69,9 @@ function main() {
   c.setPoint(60);
   c.setPoint(90);
   c.setLine(30, 90);
+  setTimeout(function() {
+    c.removePoint(60);
+  }, 1000);
 }
 
 main();
